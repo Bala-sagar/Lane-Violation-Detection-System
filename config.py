@@ -1,17 +1,13 @@
-# vehicle groups
-SMALL_VEHICLES = ["car", "motor", "bike"]
-BIG_VEHICLES = ["bus", "truck"]
-
-# model class mapping
 CLASS_NAMES = {
-    0: "car",
-    1: "motor",
-    2: "bike",
-    3: "bus",
-    4: "truck"
+    0: "Heavy_Vehicle",
+    1: "Normal_Vehicle"
 }
 
-CONF_THRESHOLD = 0.7
+LEFT_LANE_ALLOWED = ["Normal_Vehicle"]
+RIGHT_LANE_ALLOWED = ["Heavy_Vehicle"]
+
+
+CONF_THRESHOLD = 0.9
 
 # video source
 VIDEO_SOURCE = 0  # webcam

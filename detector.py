@@ -3,6 +3,7 @@ from ultralytics import YOLO
 class VehicleDetector:
     def __init__(self, model_path):
         self.model = YOLO(model_path)
+        self.model.to("cuda")
 
     def detect(self, frame):
         results = self.model(frame, conf=0.4, verbose=False)
@@ -17,10 +18,10 @@ class VehicleDetector:
 
         return detections
 
-
 class PlateDetector:
     def __init__(self, model_path):
         self.model = YOLO(model_path)
+        self.model.to("cuda")
 
     def detect(self, image):
         results = self.model(image, conf=0.4, verbose=False)
