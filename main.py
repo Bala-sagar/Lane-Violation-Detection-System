@@ -5,7 +5,7 @@ from datetime import datetime
 
 from detector import VehicleDetector, PlateDetector
 from config import CLASS_NAMES, LEFT_LANE_ALLOWED, RIGHT_LANE_ALLOWED, VIDEO_SOURCE
-
+from db import init_db, insert_violation
 import easyocr
 
 # ================= OCR =================
@@ -50,6 +50,7 @@ BASE_VIOLATION_DIR = "violations"
 
 vehicle_detector = VehicleDetector("models/vehicle.pt")
 plate_detector = PlateDetector("models/plate.pt")
+init_db()
 
 cap = cv2.VideoCapture(VIDEO_SOURCE)
 
@@ -123,6 +124,16 @@ while cap.isOpened():
                     f.write(f"lane: {lane}\n")
                     f.write(f"violation: {violation_type}\n")
                     f.write(f"plate_number: {plate_text}\n")
+                
+                insert_violation(
+                    timestamp=ts,
+                    vehicle_type=vehicle_type,
+                    lane=lane,
+                    violation_type=violation_type,
+                    plate_number=plate_text,
+                    event_dir=event_dir
+                )
+
 
 
         color = (0, 0, 255) if violation_type else (0, 255, 0)
