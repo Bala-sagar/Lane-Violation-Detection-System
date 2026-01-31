@@ -1,5 +1,0 @@
-date_time: 2026-01-31_13-38-38
-vehicle_type: Heavy_Vehicle
-lane: left
-violation: heavy_in_normal_lane
-plate_number: UNKNOWN
